@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class W3 extends StatelessWidget {
-  const W3({super.key});
+  final double value;
+  final Function() addLarge;
+  final Function() subtractLarge;
+
+  const W3({
+    super.key,
+    required this.value,
+    required this.addLarge,
+    required this.subtractLarge,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -11,33 +20,36 @@ class W3 extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+          // Display del valor
           Container(
             padding: const EdgeInsets.all(10),
             color: Theme.of(context).colorScheme.inversePrimary,
             child: Text(
-              '0',
+              value.toStringAsFixed(1),
               key: const Key('W3Value'),
             ),
           ),
-          Container(
-            margin: const EdgeInsets.all(10),
+          // Botones para aumentar/restar por 1.0
+          Container(margin: const EdgeInsets.all(10),
             color: Theme.of(context).colorScheme.inversePrimary,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.add),
-                    key: const Key('W3Add')),
+                  onPressed: addLarge,
+                  icon: const Icon(Icons.add),
+                  key: const Key('W3AddLarge'),
+                ),
                 IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.remove),
-                    key: const Key('W3Sub'))
+                  onPressed: subtractLarge,
+                  icon: const Icon(Icons.remove),
+                  key: const Key('W3SubLarge'),
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
-    ;
   }
 }
